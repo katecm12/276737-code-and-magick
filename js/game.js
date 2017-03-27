@@ -1,21 +1,21 @@
-'use strict';
-
+(function () {
+    "use strict";
+});
 var fireballSize = 22;
 var getFireballSpeed = function (left) {
       return left ? 2 : 5;
-    };
+     };
 var wizardSpeed = 3;
 var wizardWidth = 70;
 var getWizardHeight = function (width) {
       return 1.377 * width;
-    };
-var getWizardX = function getWizardX (width) { 
+     };
+var getWizardX = function getWizardX(width) { 
       return width / 2;
-    };
-var getWizardY = function getWizardY (height) { 
+     };
+var getWizardY = function getWizardY(height) { 
       return height * 2 / 3;
-    };
-
+     };
 window.GameConstants = {
   Fireball: {
     size: window.fireballSize ,
