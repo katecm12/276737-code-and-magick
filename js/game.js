@@ -1,24 +1,32 @@
-'use strict';
-
+(function () {
+    "use strict";
+});
+var fireballSize = 22;
+var getFireballSpeed = function (left) {
+    return left ? 2 : 5;
+};
+var wizardSpeed = 3;
+var wizardWidth = 70;
+var getWizardHeight = function (width) {
+    return 1.377 * width;
+     };
+var getWizardX = function getWizardX(width) { 
+    return width / 2;
+     };
+var getWizardY = function getWizardY(height) { 
+    return height * 2 / 3;
+     };
 window.GameConstants = {
   Fireball: {
-    size: window.fireballSize || 24,
-    speed: window.getFireballSpeed || function (movingLeft) {
-      return movingLeft ? 2 : 5;
-    }
+    size:window.fireballSize,
+    speed:window.getFireballSpeed 
   },
   Wizard: {
-    speed: window.wizardSpeed || 2,
-    width: window.wizardWidth || 61,
-    getHeight: window.getWizardHeight || function (width) {
-      return 1.377 * width;
-    },
-    getX: window.getWizardX || function (width) {
-      return width / 3;
-    },
-    getY: window.getWizardY || function (height) {
-      return height - 100;
-    }
+    speed:window.wizardSpeed,
+    width:window.wizardWidth,
+    getHeight:window.getWizardHeight,
+    getX:window.getWizardX,
+    getY:window.getWizardY 
   }
 };
 
