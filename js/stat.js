@@ -11,44 +11,40 @@
         ctx.font = '16px PT Mono';
         ctx.fillText('Ура, вы победили!', 120, 40);
         ctx.fillText('Список результатов:', 120, 60);
-    
-  var max = -1;
-  var maxIndex = -1;
-
-  for (var i = 0 ; i < times.length; i++) {
-    var time = times[i];
-    if (time > max) {
-      max = time;
-      maxIndex = i;
-    }
-  }
- 
-  function round(time) {
-    return Math.round(time); // попытка округлить время
-};
-        
-  var histogramHeight = 150;              // px;
-  var step = histogramHeight / (max - 0); // px;
-  
-  var barWidth = 40; // px; 
-  var indent = 90;    // px;
-  var initialX = 140; // px;
-  var initialY = 80;  // px;
-        
-  for(var i = 0; i < times.length; i++) {
-    ctx.fillRect(initialX + indent * i, initialY, barWidth, times[i] * step);
-    ctx.fillText(names[i], 140 + indent * i, 250);    
-    ctx.fillText(times[i], 140 + indent * i, times[i] * step); 
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 0, 0.5)';
-    }   
-    };    
- 
+        var max = 0;
+        var leaderIdx;
+        for (var i=0; i < times.length; i++) {
+            if (times[i] > max) {
+                max = times[i];
+                leaderIdx = i;
+            }
+        }
+        var histogramHeight = 150;//px
+        var step = histogramHeight / (max-0);//px
+        var barWidth = 40;//px
+        var ident = 90;//px
+        var initialX = 140;//px
+        var initialY = 80;//px
+        function random(min,max) {
+            return min + Math.random()*(max-min);
+        }
+        function getColor(idx) {
+            var defaultColor = 'rgba(0,0,255, ' + random(0.3, 0.8,) + ')';
+            leaderColor = 'rgba(255, 0, 0, 1)';
+            return idx === leaderIdx ? leaderColor : defaultColor;
+        }
+        for (var i=0; i < times.length; i++) {
+            var realHeight = step * times[i];
+            var x = initialX + indent * i;
+            var y = initialY + (histogramHeight - realHeight);
+            var roundedTime = Math.round(times[i]);
+            ctx.fillStyle = getColor(i);
+            ctx.fillRect(x, y, barWidth, realHeight);
+            ctx.fillText(names[i], initialX + ident*i, 250);
+            ctx.fillText(roundedTime, initialX + indent * i, y-5);
+        }
+    };
 }());
+        
+        
 
-// ctx.fillRect(10, 10, 55, 50);   
-// draws the rectangle at position 10, 10 with a width of 55 and a height of 50
-// Высота гистограммы 150px.
-
-// Ширина колонки 40px.
-
-// Расстояние между колонками 50px.
